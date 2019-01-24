@@ -64,6 +64,7 @@ addNewCourse = () => {
 
 
 updateCourse = (course) => {
+  return false;
   const courseIndex = this.state.courses.findIndex(x=> x.id === course.id)
   const courses = update(this.state.courses, {
     [courseIndex]: {$set: course }
@@ -106,9 +107,14 @@ likedHandler = (c) =>{
   .catch(error => console.log(error))
 }
 
-
+cancelHandler =(e) => {
+  e.preventDefault()
+  return false;
+  this.setState({ editingCourseId: null})
+}
 
 deleteHandler = (id) => {
+  alert("Are you sure you want to delete the task? ")
   axios.delete(`api/courses/${id}`)
   .then(response => {
     const courseIndex = this.state.courses.findIndex(x => x.id === id)
@@ -150,15 +156,16 @@ stopGreetings =()=> {
      let courses = this.state.courses.map((c) => {
       if (this.state.editingCourseId === c.id) {
         return(
-          <div className="tile" key={c.id}>
+          <div  key={c.id}>
             <CourseForm
             course={c}
             key={c.id}
             updateCourse={this.updateCourse}
-            resetNotification={this.resetNotification} />
+            resetNotification={this.resetNotification}
+            canceled= {(e) => this.cancelHandler(e)} />
           </div>)
       } else {
-        return( <div className="tile" key={c.id} >
+        return( <div key={c.id} >
           < Course
           erase={() => this.deleteHandler(c.id)}
           title={c.title} category={c.category} description={c.description}
@@ -184,7 +191,7 @@ stopGreetings =()=> {
 
 
     return (
-    <div>
+    <div >
     <button className="newCourseButton" onClick={this.addNewCourse} >
          ADD A TASK <MDBIcon icon="plus"/>
       </button> <span className="notification">
@@ -193,7 +200,7 @@ stopGreetings =()=> {
         <Modal
           show={this.state.greetings}
           modalClosed={this.stopGreetings}>
-          <h2> Task done ! Yeah ! </h2>
+          <h2> Task completed! Well done! </h2>
            <div class="modal-i"> <MDBIcon icon="thumbs-up"/> </div>
         </Modal>
       <div className="header">

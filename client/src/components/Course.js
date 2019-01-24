@@ -28,7 +28,7 @@ if (this.props.liked === false)
 
 
 return (
-  <div >
+  <div className="tile" >
     <div className= {"urgence" +this.props.capacity} onClick={this.props.clicked} >
     {urgence}
     </div>
