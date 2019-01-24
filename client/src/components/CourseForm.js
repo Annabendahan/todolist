@@ -38,6 +38,7 @@ handleBlur = () => {
   .then(response => {
     console.log(response)
     this.props.updateCourse(response.data)
+
   })
   .catch(error => console.log(error))
 }
@@ -56,9 +57,11 @@ handleBlur = () => {
 
 
     return (
-      <div >
-        <form onSubmit={this.handleBlur} > <input className="modif" type="submit" value="Valider" />
-        <p> Urgence level <input name="capacity" type='number' placeholder='Urgence level'
+      <div className="tile"  >
+        <form > <button  onClick={this.handleBlur} className="modif" > OK </button>
+
+
+        <p> Urgence level: <input name="capacity" type='number' placeholder='Urgence level'
             max={3} min={1} onChange={this.handleInput} value={this.state.capacity} /> </p>
 
             <p> <input className='input' type="text"
@@ -73,9 +76,12 @@ handleBlur = () => {
         </label>
 
             <p> <textarea className='input' name="description"
-              placeholder='Describe your course'
+              placeholder='Describe your task'
               value={this.state.description} onChange={this.handleInput}>
             </textarea></p>
+
+
+
 
 
          </form>
