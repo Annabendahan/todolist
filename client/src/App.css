@@ -1,0 +1,340 @@
+.App-header {
+  text-align: center;
+  padding: 10px;
+}
+
+.App-header h1{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  color: #4F4F4F;
+}
+
+
+.App-header h2{
+font-size: 20px;
+color:#A39E9E;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+
+.grey-container{
+  background-color: #F9F9F9;
+
+}
+
+.tiles{
+  margin-left: 12.5%;
+  height: 200vh;
+}
+
+.tile {
+  height: 250px;
+  width: 250px;
+  margin: 10px;
+  background:white;
+  float: left;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  text-align: left;
+  position: relative;
+  border-radius: 5px;
+
+}
+
+
+.tile p {
+padding: 5px 20px;
+font-weight: 500;
+
+}
+
+.modif {
+  border:none;
+  position: absolute;
+  right: 10px;
+  background: rgba(53, 249, 238, 0.8);
+  color: white;
+  opacity: 0.6;
+}
+
+.modif:hover{
+  opacity: 1;
+}
+
+
+.cat{
+  position: absolute;
+  top: 40px;
+  color:#A39E9E;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.tile h4{
+  color: #4F4F4F;
+  font-size: 20px;
+  padding: 10px 20px;
+  width: 100px;
+}
+
+
+p {
+  color:#4F4F4F;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 14;
+}
+
+.newCourseButton {
+  background: grey;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  opacity: 0.6;
+  margin-left: 45%;
+  margin-bottom: 30px;
+  padding:10px;
+}
+
+
+.newCourseButton:hover{
+ opacity:1;
+}
+
+.input {
+  border: 0;
+  background: #F9F9F9;
+  padding: 5px 10px;
+  border-radius: 10px;
+  outline: none;
+  color:#4F4F4F;
+  width: 140px;
+  font-size: 11px;
+  font-family: 'Roboto', sans-serif;
+   font-size: 14px;
+   font-weight: 500;
+
+}
+
+
+select{
+  background: #F9F9F9;
+  border:none;
+  padding: 5px 10px;
+  margin-left: 20px;
+  border-radius: 10px;
+  font-family: 'Roboto', sans-serif;
+   font-size: 14px;
+   font-weight: 500;
+   color:#4F4F4F;
+}
+input{
+  background: #F9F9F9;
+  border:none;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-family: 'Roboto', sans-serif;
+   font-size: 14px;
+   font-weight: 500;
+   color:#4F4F4F;
+}
+
+.input:focus {
+  border: solid 1px lightgrey;
+}
+
+textarea {
+  resize: none;
+  height: 70px;
+  font-size: 14px;
+}
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  width: 70%;
+  background-color: white;
+  border-radius: 10px;
+  margin:20px auto;
+}
+
+.h{
+  text-align:center;
+  margin:0px 10px;
+}
+
+.h h3{
+  font-family: 'Roboto', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0px;
+
+}
+
+.notification{
+color: #A4ED5A;
+padding: 20px 20px;
+top:0px;
+margin-left:45%;
+
+}
+
+
+.deleteButton {
+  visibility: hidden;
+  position:absolute;
+  background-color: white;
+  border: 0.25px solid lightgrey;
+  padding: 5px 10px;
+  top:-17px;
+  right: -17px;
+  margin: 5px;
+  font-size: 17px;
+  cursor: pointer;
+  color: grey;
+  border-radius: 50%;
+}
+
+
+.modifyButton{
+  visibility: hidden;
+  position:absolute;
+  background-color: white;
+  border: 0.25px solid lightgrey;
+  padding: 5px 10px;
+  top:-17px;
+  left: -17px;
+  margin: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  width: 10px;
+  color: grey;
+  border-radius: 50%;
+}
+
+.tile:hover .deleteButton {
+  visibility: visible;
+}
+
+.tile:hover .modifyButton {
+  visibility: visible;
+}
+
+.Like{
+  position: absolute;
+right:20px;
+top: 35px;
+font-size: 30px;
+}
+
+.empty:hover{
+  color:#A4ED5A;
+  opacity: 0.4;
+  cursor: pointer;
+}
+
+.empty{
+  color: lightgrey;
+}
+
+.full{
+  color:#A4ED5A;
+}
+
+.full:hover{
+  cursor: pointer;
+}
+
+.blue{
+  color: rgba(53, 249, 238, 0.25);
+}
+
+
+.yellow{
+  color:rgba(63, 245, 234, 0.6);
+}
+
+
+.pink{
+  color:#2ADFD4;
+}
+
+.green{
+  color: #A4ED5A;
+}
+
+.urgence1{
+
+
+  color: white;
+  background-color: rgba(53, 249, 238, 0.25);
+  padding: 10px;
+  font-weight: 700;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.urgence2{
+color:white;
+background: rgba(63, 245, 234, 0.6);
+padding: 10px;
+font-weight: 700;
+border-radius: 5px 5px 0px 0px;
+}
+
+.urgence3{
+  color:white;
+  background-color: #2ADFD4;
+  padding: 10px;
+  font-weight: 700;
+  border-radius: 5px 5px 0px 0px;
+}
+
+
+.Backdrop {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+
+.Modal {
+    position: fixed;
+    color: #4F4F4F;
+    z-index: 500;
+    background-color: white;
+    width: 70%;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 2px 3px 10px rgba(187, 187, 187, 0.25);
+    padding: 20px;
+    left: 15%;
+    top: 30%;
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+}
+
+@media (min-width: 600px) {
+    .Modal {
+        width: 500px;
+        left: calc(50% - 250px);
+    }
+}
+
+
+.modal-i{
+  font-size: 50px;
+  color: #A4ED5A;
+}
+
