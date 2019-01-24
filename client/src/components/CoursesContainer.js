@@ -3,7 +3,7 @@ import axios from 'axios';
 import Course from './Course';
 import update from 'immutability-helper';
 import CourseForm from './CourseForm';
-//import { MDBIcon } from "mdbreact";
+import { MDBIcon } from "mdbreact";
 import Modal from './UI/Modal';
 import Aux from './hoc/Aux';
 
@@ -32,15 +32,18 @@ class CoursesContainer extends Component {
   .catch(error => console.log(error))
 }
 
+addNewLength = () => {
+ console.log(this.state)
+}
+
 
 addNewCourse = () => {
-  axios.post('/api/courses',
+  axios.post('/api/courses/',
    { course:
       {
         title: '',
         description: '',
         capacity: 1,
-        address: '',
         liked: false,
         category: ' ',
       }
@@ -106,7 +109,7 @@ likedHandler = (c) =>{
 
 
 deleteHandler = (id) => {
-  axios.delete(`/api/courses/${id}`)
+  axios.delete(`api/courses/${id}`)
   .then(response => {
     const courseIndex = this.state.courses.findIndex(x => x.id === id)
     const courses = update(this.state.courses, { $splice: [[courseIndex, 1]]})
@@ -183,7 +186,7 @@ stopGreetings =()=> {
     return (
     <div>
     <button className="newCourseButton" onClick={this.addNewCourse} >
-         ADD A TASK MDBIcon icon="plus"
+         ADD A TASK <MDBIcon icon="plus"/>
       </button> <span className="notification">
           {this.state.notification}
         </span>
@@ -191,7 +194,7 @@ stopGreetings =()=> {
           show={this.state.greetings}
           modalClosed={this.stopGreetings}>
           <h2> Task done ! Yeah ! </h2>
-           <div class="modal-i"> MDBIcon icon="thumbs-up" </div>
+           <div class="modal-i"> <MDBIcon icon="thumbs-up"/> </div>
         </Modal>
       <div className="header">
         <div className="h blue"> <h3> {doneCount} </h3> <p> completed tasks  </p>  </div>

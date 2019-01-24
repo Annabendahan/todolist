@@ -1,51 +1,36 @@
-class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :update, :destroy]
+class CoursesController < ApiController
+     def index
+      @courses = Course.order("created_at DESC")
+      render json: @courses
+    end
 
-  # GET /courses
-  def index
-    @courses = Course.all
 
-    render json: @courses
-  end
+    def create
+    @course = Course.create(course_params)
+    render json: @course
+   end
 
-  # GET /courses/1
-  def show
+   def update
+    @course = Course.find(params[:id])
+    @course.update_attributes(course_params)
     render json: @course
   end
 
-  # POST /courses
-  def create
-    @course = Course.new(course_params)
 
-    if @course.save
-      render json: @course, status: :created, location: @course
-    else
-      render json: @course.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /courses/1
-  def update
-    if @course.update(course_params)
-      render json: @course
-    else
-      render json: @course.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /courses/1
   def destroy
-    @course.destroy
+  @course = Course.find(params[:id])
+  if @course.destroy
+    head :no_content, status: :ok
+  else
+    render json: @course.errors, status: :unprocessable_entity
+  end
+end
+
+   private
+
+  def course_params
+    params.require(:course).permit(:title, :description, :capacity, :address, :liked, :category)
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_course
-      @course = Course.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def course_params
-      params.require(:course).permit(:title, :description, :capacity, :category, :liked, :date)
-    end
 end
+

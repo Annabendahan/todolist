@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-//import { MDBIcon } from "mdbreact";
+import { MDBIcon } from "mdbreact";
 
 class  Course extends Component{
 
@@ -21,10 +21,10 @@ class  Course extends Component{
         urgence = "Pas urgent"
     }
 
-let liked = <p className="check full"> MDBIcon icon="check" </p>
+let liked = <p className="check full"> <MDBIcon icon="check"/> </p>
 console.log(this.props.liked)
 if (this.props.liked === false)
- {liked = <p className="check empty"> MDBIcon icon="check" </p>}
+ {liked = <p className="check empty"> <MDBIcon icon="check"/> </p>}
 
 
 return (
@@ -33,10 +33,10 @@ return (
     {urgence}
     </div>
     <span className="deleteButton" onClick={this.props.erase}>
-      MDBIcon icon="times"
+      <MDBIcon icon="times"/>
     </span>
     <span className="modifyButton" onClick={this.props.clicked}>
-      MDBIcon icon="pen"
+      <MDBIcon icon="pen"/>
     </span>
     <div className="Like" onClick={this.props.like}>
                     {liked}
