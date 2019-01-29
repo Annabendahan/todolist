@@ -21,6 +21,49 @@ color:#A39E9E;
 }
 
 
+.tab{
+
+  margin: 3px;
+  color: grey;
+  border: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  background: transparent;
+  padding: 10px 15px;
+  opacity: 0.7;
+
+}
+
+.tab:hover {
+
+  cursor: pointer;
+  border: none;
+  opacity: 1;
+
+}
+
+.tabs{
+
+  text-align: center;
+  margin: 40px;
+  padding: 10px;
+
+
+}
+
+.active{
+  color: #2ADFD4;
+  border: none;
+  border-style: none;
+  opacity: 1;
+  border-bottom: 5px solid #2ADFD4;
+}
+
+.active:hover{
+  border-bottom: 5px solid #2ADFD4;
+}
+
 .grey-container{
   background-color: #F9F9F9;
 
@@ -28,8 +71,7 @@ color:#A39E9E;
 
 .tiles{
   margin-left: 12.5%;
-
-  height: 2000vh;
+height: 50vh;
 }
 
 .tile {

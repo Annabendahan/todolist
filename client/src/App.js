@@ -10,7 +10,9 @@ class App extends Component {
           <h1> TODOLIST </h1>
           <h2> GET THINGS DONE </h2>
         </header>
+
         < CoursesContainer />
+
       </div>
     );
   }

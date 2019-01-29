@@ -15,7 +15,8 @@ class CoursesContainer extends Component {
     courses: [],
     editingCourseId: null,
     notification: null,
-    greetings: false
+    greetings: false,
+    todo: true
 
   }
 }
@@ -130,7 +131,14 @@ stopGreetings =()=> {
 }
 
 
+displayTodoHandler = () =>{
+  this.setState({todo: true})
+}
 
+
+displayDoneHandler = () =>{
+  this.setState({todo: false})
+}
 
   render() {
     let doneCount = 0;
@@ -162,7 +170,8 @@ stopGreetings =()=> {
             key={c.id}
             updateCourse={this.updateCourse}
             resetNotification={this.resetNotification}
-            canceled= {(e) => this.cancelHandler(e)} />
+            canceled= {(e) => this.cancelHandler(e)}
+            liked = {c.liked} />
           </div>)
       } else {
         return( <div key={c.id} >
@@ -186,6 +195,20 @@ stopGreetings =()=> {
      })
 
      console.log(coursesTodo)
+     console.log(coursesDone)
+
+      let DisplayCourses = coursesTodo
+        let tabs= <div className= "tabs">
+        <span className="tab active" onClick={this.displayTodoHandler}> TODO </span>
+        <span className="tab" onClick={this.displayDoneHandler}> DONE </span>
+      </div>
+     if (this.state.todo === false) {
+      DisplayCourses = coursesDone
+      tabs = <div className= "tabs">
+        <span className="tab " onClick={this.displayTodoHandler}> TODO </span>
+        <span className="tab active" onClick={this.displayDoneHandler}> DONE </span>
+      </div>
+     }
 
 
 
@@ -201,7 +224,7 @@ stopGreetings =()=> {
           show={this.state.greetings}
           modalClosed={this.stopGreetings}>
           <h2> Task completed! Well done! </h2>
-           <div class="modal-i"> <MDBIcon icon="thumbs-up"/> </div>
+           <div className="modal-i"> <MDBIcon icon="thumbs-up"/> </div>
         </Modal>
       <div className="header">
         <div className="h blue"> <h3> {doneCount} </h3> <p> completed tasks  </p>  </div>
@@ -209,16 +232,12 @@ stopGreetings =()=> {
         <div className="h yellow"> <h3> {semiUrgentCount} </h3>  <p> semi-urgent tasks todo </p> </div>
         <div className="h green">  <h3> {ratioR} % </h3> <p> ratio of completion </p> </div>
       </div>
+      {tabs}
 
       <div className= "tiles">
-       {courses}
-       </div>
 
-
-
-
-
-
+        {DisplayCourses}
+        </div>
 
 
     </div>
