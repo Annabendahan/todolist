@@ -14,9 +14,10 @@ class RegisterForm extends Component {
 
 
 handleRegisterSubmit = (e) => {
+  e.preventDefault()
   const user = {
     email: this.state.email,
-    password: this.state.password
+    password_digest: this.state.password
   }
   console.log(user)
     axios.post(

@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < ApiController
   before_action :set_user, only: [:show, :update, :destroy]
 
   # GET /users
@@ -15,6 +15,8 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
+    print "create user"
+    debugger
     @user = User.new(user_params)
 
     if @user.save
