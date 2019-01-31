@@ -6,7 +6,8 @@ class RegisterForm extends Component {
     super();
     this.state={
       username: '',
-      password: ''
+      password: '',
+      password_confirmation: '',
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -17,7 +18,8 @@ handleRegisterSubmit = (e) => {
   e.preventDefault()
   const user = {
     email: this.state.email,
-    password_digest: this.state.password
+    password: this.state.password,
+    password_confirmation: this.state.password_confirmation
   }
   console.log(user)
     axios.post(
@@ -50,6 +52,7 @@ handleRegisterSubmit = (e) => {
 
         <input type="text" name="email" placeholder="email" value= {this.state.email} onChange={this.handleChange} />
         <input type="text" name="password" placeholder="password" value= {this.state.password} onChange={this.handleChange} />
+        <input type="text" name="password_confirmation" placeholder="password_confirmation" value= {this.state.password_confirmation} onChange={this.handleChange} />
         <input type="submit" value="Register!" />
         </form>
       </div>
