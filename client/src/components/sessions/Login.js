@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch';
+import axios from 'axios'
 
 class Login extends Component {
   constructor(props) {
@@ -17,6 +18,8 @@ handleChange = (event) => {
 handleOnSubmit = (event) => {
     event.preventDefault()
     let request = {"auth": {"email": this.state.email, "password": this.state.password}}
+    console.log(request)
+
 fetch('/api/user_token', {
       method: 'POST',
       headers: {
@@ -29,12 +32,29 @@ fetch('/api/user_token', {
         throw Error(rsp.statusText);
       }
       return rsp.json()
+      console.log(rsp)
     })
     .then((data) => localStorage.setItem("jwt", data.jwt))
     .catch(error => {console.log(error)});
   }
+
+getToken = () =>{
+axios.get('/api/users')
+  .then(response => {
+    console.log(response)
+  })
+  .catch(error => console.log(error))
+}
+
+
+
+
+
+
+
 render(){
     return(
+
       <form className="form" onSubmit={(event) => this.handleOnSubmit(event)}>
         <label htmlFor="email">Email: </label>
         <br />
@@ -58,7 +78,14 @@ render(){
         <br /><br />
         <input type="submit" />
           <br />
+
+
+
+              <button onClick={() => localStorage.removeItem("jwt")}>Logout</button>
+
+
       </form>
+
     )
   }
 }
