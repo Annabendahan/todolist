@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+AdminUser.create!(email: 'admin2@example.com', password: 'password', password_confirmation: 'password')
 
 
 courses = Course.create( [
@@ -26,3 +26,7 @@ courses = Course.create( [
     capacity: 2,
     liked: false }
     ])
+
+
+
+anna = User.create( email: "anna@anna.com", password: "password", password_confirmation: "password")

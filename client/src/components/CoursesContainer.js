@@ -25,7 +25,12 @@ class CoursesContainer extends Component {
 
 
   componentDidMount() {
-  axios.get('/api/courses')
+    let token = "Bearer " + localStorage.getItem("jwt")
+    const options = { method: 'GET',
+    headers: { 'content-type': 'application/x-www-form-urlencoded', 'Authorization': token },
+    url: '/api/courses',
+     };
+    axios(options)
   .then(response => {
     console.log(response)
     this.setState({courses: response.data})
