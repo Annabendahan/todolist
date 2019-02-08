@@ -2,13 +2,14 @@ class CoursesController < ApiController
      before_action :authenticate_user
 
      def index
-      @courses = Course.order("created_at DESC")
+      @courses = Course.where(user: current_user).order("created_at DESC")
       render json: @courses
     end
 
 
     def create
     @course = Course.create(course_params)
+    @course.user = current_user
     render json: @course
    end
 
@@ -31,7 +32,7 @@ end
    private
 
   def course_params
-    params.require(:course).permit(:title, :description, :capacity, :address, :liked, :category)
+    params.require(:course).permit(:id, :title, :description, :capacity, :address, :liked, :category)
   end
 
 end

@@ -20,7 +20,8 @@ class CourseForm extends Component {
 
 
 
-handleBlur = () => {
+handleBlur = (e) => {
+  e.preventDefault()
   const course = {
     title: this.state.title,
     description: this.state.description,
@@ -29,16 +30,17 @@ handleBlur = () => {
     category: this.state.category
 
   }
+  let token = "Bearer " + localStorage.getItem("jwt")
+  console.log(this.props)
 
   axios.put(
     `/api/courses/${this.props.course.id}`,
     {
       course: course
-    })
+    }, { headers: {'Authorization': token }})
   .then(response => {
     console.log(response)
     this.props.updateCourse(response.data)
-
   })
   .catch(error => console.log(error))
 }
@@ -58,7 +60,7 @@ handleBlur = () => {
 
     return (
       <div className="tile"  >
-        <form > <button  onClick={this.handleBlur} className="modif" > OK </button>
+        <form > <button  onClick={(e) => this.handleBlur(e)} className="modif" > OK </button>
 
 
         <p> Urgence level: <input name="capacity" type='number' placeholder='Urgence level'
