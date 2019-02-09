@@ -44,6 +44,7 @@ addNewLength = () => {
 
 
 addNewCourse = () => {
+  let token = "Bearer " + localStorage.getItem("jwt")
   axios.post('/api/courses/',
    { course:
       {
@@ -53,7 +54,7 @@ addNewCourse = () => {
         liked: false,
         category: ' ',
       }
-    }
+    }, {headers: {'Authorization': token}}
   )
   .then(response => {
     console.log(response)

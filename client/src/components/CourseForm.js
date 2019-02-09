@@ -21,6 +21,7 @@ class CourseForm extends Component {
 
 
 handleBlur = () => {
+  let token = "Bearer " + localStorage.getItem("jwt")
   const course = {
     title: this.state.title,
     description: this.state.description,
@@ -34,7 +35,7 @@ handleBlur = () => {
     `/api/courses/${this.props.course.id}`,
     {
       course: course
-    })
+    }, {headers: {'Authorization': token}})
   .then(response => {
     console.log(response)
     this.props.updateCourse(response.data)
