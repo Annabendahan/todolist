@@ -32,7 +32,7 @@ end
    private
 
   def course_params
-    params.require(:course).permit(:id, :title, :description, :capacity, :address, :liked, :category)
+    params.require(:course).permit(:id, :title, :description, :capacity, :address, :liked, :category, :user_id)
   end
 
 end
