@@ -20,8 +20,8 @@ class CourseForm extends Component {
 
 
 
-handleBlur = (e) => {
-  e.preventDefault()
+handleBlur = () => {
+
   const course = {
     title: this.state.title,
     description: this.state.description,
