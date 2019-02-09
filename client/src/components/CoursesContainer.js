@@ -44,10 +44,7 @@ class CoursesContainer extends Component {
 
 addNewCourse = () => {
   let token = "Bearer " + localStorage.getItem("jwt")
-  const options = { method: 'GET',
-    headers: { 'content-type': 'application/x-www-form-urlencoded', 'Authorization': token },
-    url: '/api/courses',
-     };
+
   axios.post('/api/courses/',
    { course:
       {
@@ -57,7 +54,9 @@ addNewCourse = () => {
         liked: false,
         category: ' ',
       }
+
     }, { headers: {'Authorization': token }}
+
   )
   .then(response => {
     console.log(response)

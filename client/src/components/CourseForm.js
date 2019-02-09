@@ -20,8 +20,10 @@ class CourseForm extends Component {
 
 
 
+
 handleBlur = (e) => {
   e.preventDefault()
+
   const course = {
     title: this.state.title,
     description: this.state.description,
@@ -37,7 +39,9 @@ handleBlur = (e) => {
     `/api/courses/${this.props.course.id}`,
     {
       course: course
-    }, { headers: {'Authorization': token }})
+
+    }, {headers: {'Authorization': token}})
+
   .then(response => {
     console.log(response)
     this.props.updateCourse(response.data)
