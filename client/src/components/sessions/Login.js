@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch';
+import './LoginForm.css'
+import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom';
 import axios from 'axios'
+import { MDBIcon } from "mdbreact";
+import { withRouter } from 'react-router-dom';
 
 class Login extends Component {
   constructor(props) {
   super(props)
     this.state = {
       email: "",
-      password: ""
+      password: "",
     }
   }
 handleChange = (event) => {
@@ -15,49 +19,69 @@ handleChange = (event) => {
       [event.target.id]: event.target.value
     })
   }
-handleOnSubmit = (event) => {
-    event.preventDefault()
-    let request = {"auth": {"email": this.state.email, "password": this.state.password}}
-    console.log(request)
 
-fetch('/api/user_token', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(request)
-    })
-    .then(function(rsp){
-      if (!rsp.ok) {
-        throw Error(rsp.statusText);
+
+// handleOnSubmit = (event) => {
+//     event.preventDefault()
+//   let request = {"auth": {"email": this.state.email, "password": this.state.password}}
+//     //console.log(request)
+
+// fetch('/api/user_token', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify(request)
+//     })
+//     .then(function(rsp){
+//       if (!rsp.ok) {
+//         throw Error(rsp.statusText);
+//         this.setState({auth: true})
+//       }
+//       return rsp.json()
+//       console.log(rsp)
+//     })
+//     .then((data) => localStorage.setItem("jwt", data.jwt) )
+//     .catch(error => {console.log(error)});
+//     this.displayError()
+//     console.log(this.state.auth)
+
+//   }
+
+
+
+
+
+displayError = () => {
+if (localStorage.getItem("jwt") === null) {
+        this.setState({error: true})
+      } else if (localStorage.getItem("jwt") !== null) {
+        this.setState({error: false})
       }
-      return rsp.json()
-      console.log(rsp)
-    })
-    .then((data) => localStorage.setItem("jwt", data.jwt))
-    .catch(error => {console.log(error)});
-  }
 
-getToken = () =>{
-axios.get('/api/users')
-  .then(response => {
-    console.log(response)
-  })
-  .catch(error => console.log(error))
-}
-
-
-
-
+    }
 
 
 
 render(){
-    return(
 
-      <form className="form" onSubmit={(event) => this.handleOnSubmit(event)}>
-        <label htmlFor="email">Email: </label>
-        <br />
+
+
+    let error = '';
+    if (this.state.error) {
+      error = 'Sorry, wrong login or/and password'
+    }
+
+    return(
+      <div className="loginForm">
+        <h1> TODOLIST </h1>
+        <h2> GET THINGS DONE </h2>
+
+
+
+      <form className="form" onSubmit={(e) => this.props.handleLoginSubmit(e, this.state.email, this.state.password)} >
+
+        <br /> <br />
         <input
           name="email"
           id="email"
@@ -66,7 +90,7 @@ render(){
           onChange={(event) => this.handleChange(event)}
         />
         <br /> <br />
-        <label htmlFor="password">Password: </label>
+
         <br />
         <input
           name="password"
@@ -75,18 +99,16 @@ render(){
           value={this.state.password}
           onChange={(event) => this.handleChange(event)}
           />
-        <br /><br />
-        <input type="submit" />
+        <br /><br /><br />
+        <input className="submit" type="submit" value="LOGIN" />
           <br />
 
-
-
-              <button onClick={() => localStorage.removeItem("jwt")}>Logout</button>
-
-
       </form>
+      <p className="r-link"> You don't have any account yet?  <Link to='/register' className="r-link">  Create an account   <MDBIcon icon="long-arrow-alt-right"/></Link> </p>
+
+      </div>
 
     )
   }
 }
-export default Login;
+export default withRouter(Login);

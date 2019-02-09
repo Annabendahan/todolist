@@ -3,17 +3,19 @@
   padding: 10px;
 }
 
-.App-header h1{
+h1{
   font-family: 'Roboto', sans-serif;
   font-weight: 900;
   font-size: 40px;
   color: #4F4F4F;
+  text-align:center;
 }
 
 
-.App-header h2{
+h2{
 font-size: 20px;
 color:#A39E9E;
+text-align:center;
 }
 
 .App-intro {
@@ -44,12 +46,9 @@ color:#A39E9E;
 }
 
 .tabs{
-
   text-align: center;
   margin: 40px;
   padding: 10px;
-
-
 }
 
 .active{
@@ -66,6 +65,7 @@ color:#A39E9E;
 
 .grey-container{
   background-color: #F9F9F9;
+  height: 100vh;
 
 }
 
@@ -94,6 +94,24 @@ padding: 5px 20px;
 font-weight: 500;
 
 }
+
+
+.logout{
+ text-align: left;
+  margin: 0px 20px;
+  border: none;
+  padding: 10px 20px;
+  background: rgba(63, 245, 234, 0.6);
+  color: white;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.logout:hover{
+  background: rgba(63, 245, 234, 0.8);
+  cursor: pointer;
+}
+
 
 .modif {
   border:none;
@@ -152,19 +170,17 @@ p {
  opacity:1;
 }
 
-.input {
-  border: 0;
-  background: #F9F9F9;
-  padding: 5px 10px;
-  border-radius: 10px;
-  outline: none;
-  color:#4F4F4F;
-  width: 140px;
-  font-size: 11px;
-  font-family: 'Roboto', sans-serif;
-   font-size: 14px;
-   font-weight: 500;
 
+.form{
+  margin: auto;
+  text-align: center;
+  color:white;
+}
+
+
+
+input{
+  color: white;
 }
 
 
@@ -179,16 +195,42 @@ select{
    font-weight: 500;
    color:#4F4F4F;
 }
-input{
-  background: #F9F9F9;
+
+#email, #password, #password_confirmation{
+  background: rgba(250, 250, 250, 0.5) !important;
   border:none;
-  padding: 5px 10px;
-  border-radius: 10px;
+  width: 200px;
+  margin: -15px;
+  padding: 10px 10px;
+  border-radius: 3px;
   font-family: 'Roboto', sans-serif;
    font-size: 14px;
    font-weight: 500;
-   color:#4F4F4F;
+   color: rgba(250, 250, 250, 1) !important;
 }
+
+.submit{
+  border:none;
+  padding: 7px 15px;
+  color: #28DCE8;
+  font-weight: 700;
+  border-radius: 5px;
+  opacity: 0.9;
+}
+
+
+.submit:hover{
+opacity: 1;
+cursor: pointer;
+}
+
+.error{
+ color: red;
+ margin-top: -20px;
+
+
+}
+
 
 .input:focus {
   border: solid 1px lightgrey;
@@ -389,8 +431,32 @@ border-radius: 5px 5px 0px 0px;
 
 
 
+
 .modal-i{
   font-size: 50px;
   color: #A4ED5A;
+}
+
+.r-link{
+font-weight: 900;}
+
+.nav{
+  display: block;
+  text-align: center;
+  margin: 50px;
+
+}
+
+
+.nav a{
+  text-decoration:  none;
+  padding: 20px;
+  background: white;
+  margin: 10px;
+
+}
+
+.nav a:hover{
+  cursor: pointer;
 }
 

@@ -6,6 +6,9 @@ import CourseForm from './CourseForm';
 import { MDBIcon } from "mdbreact";
 import Modal from './UI/Modal';
 import Aux from './hoc/Aux';
+import { withRouter } from 'react-router-dom';
+
+
 
 class CoursesContainer extends Component {
 
@@ -22,9 +25,8 @@ class CoursesContainer extends Component {
 }
 
 
-
-
   componentDidMount() {
+
     let token = "Bearer " + localStorage.getItem("jwt")
     const options = { method: 'GET',
     headers: { 'content-type': 'application/x-www-form-urlencoded', 'Authorization': token },
@@ -32,19 +34,17 @@ class CoursesContainer extends Component {
      };
     axios(options)
   .then(response => {
-    console.log(response)
     this.setState({courses: response.data})
   })
   .catch(error => console.log(error))
 }
 
-addNewLength = () => {
- console.log(this.state)
-}
+
 
 
 addNewCourse = () => {
   let token = "Bearer " + localStorage.getItem("jwt")
+
   axios.post('/api/courses/',
    { course:
       {
@@ -54,7 +54,9 @@ addNewCourse = () => {
         liked: false,
         category: ' ',
       }
-    }, {headers: {'Authorization': token}}
+
+    }, { headers: {'Authorization': token }}
+
   )
   .then(response => {
     console.log(response)
@@ -77,7 +79,6 @@ updateCourse = (course) => {
     [courseIndex]: {$set: course }
   })
   this.setState({courses: courses, notification: 'All changes saved !', editingCourseId: null})
-  console.log(this.state.notification)
 }
 
 
@@ -89,7 +90,7 @@ enableEditing = (id) => {
 
 
 likedHandler = (c) =>{
-
+  let token = "Bearer " + localStorage.getItem("jwt")
   const courseIndex = this.state.courses.find(x => x.id === c.id)
   courseIndex.liked = !courseIndex.liked
    const course = {
@@ -98,9 +99,8 @@ likedHandler = (c) =>{
   axios.put(`/api/courses/${c.id}`,
   {
       course: course
-    })
+    }, { headers: {'Authorization': token }})
  .then(response => {
-    console.log(response)
     //this.props.updateCourse(response.data)
     const courses = update(this.state.courses, {
     [courseIndex]: {$set: course }
@@ -122,7 +122,8 @@ cancelHandler =(e) => {
 
 deleteHandler = (id) => {
   alert("Are you sure you want to delete the task? ")
-  axios.delete(`api/courses/${id}`)
+  let token = "Bearer " + localStorage.getItem("jwt")
+  axios.delete(`api/courses/${id}`,  { headers: {'Authorization': token }})
   .then(response => {
     const courseIndex = this.state.courses.findIndex(x => x.id === id)
     const courses = update(this.state.courses, { $splice: [[courseIndex, 1]]})
@@ -146,6 +147,8 @@ displayDoneHandler = () =>{
   this.setState({todo: false})
 }
 
+
+
   render() {
     let doneCount = 0;
      let urgentCount =0;
@@ -163,7 +166,13 @@ displayDoneHandler = () =>{
             semiUrgentCount++
           }
         }})
+
+
      let ratio = (doneCount ) /taskCount * 100
+
+     if (this.state.courses.length < 1 ) {
+      ratio = 0
+     }
      let ratioR = Math.round(ratio)
 
 
@@ -200,10 +209,9 @@ displayDoneHandler = () =>{
       (c.props.children.props.liked) ? coursesDone.push(c) : coursesTodo.push(c)
      })
 
-     console.log(coursesTodo)
-     console.log(coursesDone)
 
       let DisplayCourses = coursesTodo
+
         let tabs= <div className= "tabs">
         <span className="tab active" onClick={this.displayTodoHandler}> TODO </span>
         <span className="tab" onClick={this.displayDoneHandler}> DONE </span>
@@ -219,8 +227,13 @@ displayDoneHandler = () =>{
 
 
 
+
     return (
     <div >
+
+     <h1> TODOLIST </h1>
+    <h2> GET THINGS DONE </h2>
+
     <button className="newCourseButton" onClick={this.addNewCourse} >
          ADD A TASK <MDBIcon icon="plus"/>
       </button> <span className="notification">
@@ -258,4 +271,4 @@ displayDoneHandler = () =>{
 
 
 
-export default CoursesContainer;
+export default withRouter(CoursesContainer);
