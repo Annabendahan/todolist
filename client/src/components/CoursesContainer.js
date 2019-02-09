@@ -40,58 +40,62 @@ class CoursesContainer extends Component {
 }
 
 
+handleLength = () =>{
 
-
-// addNewCourse = () => {
-//   let token = "Bearer " + localStorage.getItem("jwt")
-//   axios.post('/api/courses/',
-//    { course:
-//       {
-//         title: '',
-//         description: '',
-//         capacity: 1,
-//         liked: false,
-//         category: ' ',
-//       }
-//     }, { headers: {'Authorization': token }}
-//   )
-//   .then(response => {
-//     console.log(response)
-//     const courses = update(this.state.courses, {
-//       $splice: [[0, 0, response.data]]
-//     })
-//     this.setState({
-//       notification: null,
-//       courses: courses,
-//       editingCourseId: response.data.id})
-//   })
-//   .catch(error => console.log(error))
-// }
+}
 
 
 
 addNewCourse = () => {
-    let token = "Bearer " + localStorage.getItem("jwt")
-        const course = {
-           title: '',
+  let token = "Bearer " + localStorage.getItem("jwt")
+  axios.post('/api/courses/',
+   { course:
+      {
+        title: '',
         description: '',
         capacity: 1,
         liked: false,
-        category: ' '
-        };
-        axios.post('/api/courses', { headers: {'Authorization': token }})
-            .then(response => {
-                console.log(response);
-                 const courses = update(this.state.courses, {
+        category: ' ',
+      }
+    }, { headers: {'Authorization': token }}
+  )
+  .then(response => {
+    console.log(response)
+    const courses = update(this.state.courses, {
       $splice: [[0, 0, response.data]]
-     })
-                 this.setState({
-   notification: null,
+    })
+    this.setState({
+      notification: null,
       courses: courses,
-       editingCourseId: response.data.id})
-   })
+      editingCourseId: response.data.id})
+  })
+  .catch(error => console.log(error))
+}
 
-    }
+
+
+// addNewCourse = () => {
+//     let token = "Bearer " + localStorage.getItem("jwt")
+//         const course = {
+//            title: '',
+//         description: '',
+//         capacity: 1,
+//         liked: false,
+//         category: ' '
+//         };
+//         axios.post('/api/courses', { headers: {'Authorization': token }})
+//             .then(response => {
+//                 console.log(response);
+//                  const courses = update(this.state.courses, {
+//       $splice: [[0, 0, response.data]]
+//      })
+//                  this.setState({
+//    notification: null,
+//       courses: courses,
+//        editingCourseId: response.data.id})
+//    })
+
+//     }
 
 
 updateCourse = (course) => {
