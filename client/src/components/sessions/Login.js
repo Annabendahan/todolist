@@ -85,6 +85,7 @@ render(){
         <input
           name="email"
           id="email"
+          placeholder='email'
           type="email"
           value={this.state.email}
           onChange={(event) => this.handleChange(event)}
@@ -95,6 +96,7 @@ render(){
         <input
           name="password"
           id="password"
+          placeholder='password'
           type="password"
           value={this.state.password}
           onChange={(event) => this.handleChange(event)}

@@ -7,6 +7,7 @@ import { MDBIcon } from "mdbreact";
 import Modal from './UI/Modal';
 import Aux from './hoc/Aux';
 import { withRouter } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 
 
@@ -45,20 +46,64 @@ handleLength = () =>{
 }
 
 
+ // addNewsCourse(e) {
 
-addNewCourse = () => {
+ //        let token = "Bearer " + localStorage.getItem("jwt")
+ //        let decoded = jwt_decode(localStorage.getItem("jwt"))
+ //        const course = {
+ //           title: '',
+ //        description: '',
+ //        capacity: 1,
+ //        liked: false,
+ //        user_id: decoded.sub
+ //        };
+
+ //        console.log(decoded.sub)
+
+ //    fetch('api/courses', {
+ //      method: 'POST',
+ //      body: JSON.stringify({
+ //        course: course,
+ //      }),
+ //      headers: {
+ //        'Content-Type': 'application/json',
+ //      'Authorization': token,
+ //      },
+ //    }).then(res => res.json() )
+ //        .then(res => {
+ //         console.log(res);
+ //         console.log(this)
+ //          const courses = update(this.state.courses, {
+ //      $splice: [[0, 0, res]] })
+ //          this.setState({
+ //   notification: null,
+ //      courses: courses,
+ //       editingCourseId: res.id})
+
+ //        }).catch(err=> {
+ //          console.log(err);
+ //        })
+
+ //  }
+
+
+addNewCourse = (e) => {
+
   let token = "Bearer " + localStorage.getItem("jwt")
-  axios.post('/api/courses/',
-   { course:
-      {
-        title: '',
+  let decoded = jwt_decode(localStorage.getItem("jwt"))
+        const course = {
+           title: '',
         description: '',
         capacity: 1,
         liked: false,
-        category: ' ',
-      }
+        user_id: decoded.sub
+        };
+
+  axios.post('/api/courses/',
+   { course:course
     }, { headers: {'Authorization': token }}
   )
+
   .then(response => {
     console.log(response)
     const courses = update(this.state.courses, {

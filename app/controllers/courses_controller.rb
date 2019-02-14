@@ -8,6 +8,7 @@ class CoursesController < ApiController
 
 
     def create
+
     @course = Course.create(course_params)
     @course.user = current_user
     render json: @course

@@ -9,7 +9,6 @@ class CourseForm extends Component {
       title: this.props.course.title,
       description: this.props.course.description,
       capacity: this.props.course.capacity,
-      category: this.props.course.category,
       liked: this.props.course.liked
       //address: this.props.course.address,
 
@@ -26,8 +25,8 @@ handleBlur = () => {
     title: this.state.title,
     description: this.state.description,
     //address: this.state.address,
-    capacity: this.state.capacity,
-    category: this.state.category
+    capacity: this.state.capacity
+
 
   }
   let token = "Bearer " + localStorage.getItem("jwt")
