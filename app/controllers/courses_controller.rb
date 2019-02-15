@@ -15,27 +15,28 @@ class CoursesController < ApiController
    end
 
 
-   def update
-    course = Course.find(params[:id])
-   course.update(course_params)
-    if course.save
-      render json: {
-        message: 'ok',
-        course: course
-      }
-    else
-      render json: {
-        message: 'Could not update the task :('
-      }
-    end
-  end
-
   #  def update
-  #   @course = Course.find(params[:id])
-  #   @course.update_attributes(course_params)
-  #   render json: @course
-  #   redirect_to courses_path
+  #   course = Course.find(params[:id])
+  #  course.update(course_params)
+  #   if course.save
+  #     render json: {
+  #       message: 'ok',
+  #       course: course
+  #     }
+  #     redirect_to courses_path
+  #   else
+  #     render json: {
+  #       message: 'Could not update the task :('
+  #     }
+  #   end
   # end
+
+   def update
+    @course = Course.find(params[:id])
+    @course.update_attributes(course_params)
+    render :json
+
+  end
 
 
   def destroy

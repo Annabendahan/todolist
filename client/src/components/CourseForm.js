@@ -69,11 +69,7 @@ handleBlur = () => {
               name="title" placeholder='Enter a Title'
               value={this.state.title} onChange={this.handleInput} /> </p>
              <label>
-         <p>Category:
-          <select  name="category" value={this.state.category} onChange={this.handleInput} onClick={this.handleInput}>
-            <option value="PRO">PRO</option>
-            <option value="PERSO">PERSO </option>
-          </select></p>
+
         </label>
 
             <p> <textarea className='input' name="description"
