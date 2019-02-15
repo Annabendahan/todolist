@@ -150,8 +150,11 @@ console.log(this.state.error)
 
 
            <Route
-              exact path="/courses"
-              render={() => <CoursesContainer />} />
+              path="/courses"
+              render={() => (this.state.auth !== null)
+              ? < CoursesContainer />
+              : <Redirect to="/login" /> }
+               />
 
           <Route
             exact path="/register"
