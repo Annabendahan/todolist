@@ -145,28 +145,23 @@ console.log(this.state.error)
           <Route
             exact path="/"
             render={() => (this.state.auth !== null)
-              ? <Redirect to="/courses" />
+              ? < CoursesContainer />
               : <Redirect to="/login" /> } />
 
 
-           <Route
-              path="/courses"
-              render={() => (this.state.auth !== null)
-              ? < CoursesContainer />
-              : <Redirect to="/login" /> }
-               />
+
 
           <Route
             exact path="/register"
             render={() => (this.state.auth !== null )
-              ? <Redirect to="/courses" />
+              ? <Redirect to="/" />
               : <RegisterForm
               handleRegisterSubmit= {this.handleRegisterSubmit} />} />
 
           <Route
               exact path="/login"
               render={() => (this.state.auth !== null)
-              ? <Redirect to="/courses" />
+              ? <Redirect to="/" />
               : <Login handleLoginSubmit= {this.handleLoginSubmit} /> }  />
 
 
