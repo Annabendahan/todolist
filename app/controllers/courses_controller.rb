@@ -35,8 +35,7 @@ class CoursesController < ApiController
     @course = Course.find(params[:id])
     @course.update_attributes(course_params)
     render :json
-
-  end
+   end
 
 
   def destroy

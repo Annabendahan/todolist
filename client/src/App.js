@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios'
 
 import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom';
+import { HashRouter } from 'react-router-dom'
 import CoursesContainer from './components/CoursesContainer';
 import Login from './components/sessions/Login'
 import RegisterForm from './components/sessions/RegisterForm'
@@ -136,7 +137,7 @@ console.log(this.state.error)
 
 
     return (
-      <Router>
+      <HashRouter>
       <div className="grey-container">
         <header className="App-header">
         </header>
@@ -144,6 +145,13 @@ console.log(this.state.error)
 <div className="error"> {errorLogin}  {errorRegister} </div>
           <Route
             exact path="/"
+            render={() => (this.state.auth !== null)
+              ? <Redirect to="/courses" />
+              : <Redirect to="/login" /> } />
+
+
+               <Route
+            exact path="/courses"
             render={() => (this.state.auth !== null)
               ? < CoursesContainer />
               : <Redirect to="/login" /> } />
@@ -154,19 +162,19 @@ console.log(this.state.error)
           <Route
             exact path="/register"
             render={() => (this.state.auth !== null )
-              ? <Redirect to="/" />
+              ? <Redirect to="/courses" />
               : <RegisterForm
               handleRegisterSubmit= {this.handleRegisterSubmit} />} />
 
           <Route
               exact path="/login"
               render={() => (this.state.auth !== null)
-              ? <Redirect to="/" />
+              ? <Redirect to="/courses" />
               : <Login handleLoginSubmit= {this.handleLoginSubmit} /> }  />
 
 
       </div>
-      </Router>
+      </HashRouter>
     );
   }
 }
